@@ -17,32 +17,47 @@ pools:
     - "#美容室"
     - "#美容院"
     - "#ヘアサロン"
-    - "#hairsalon"
     - "#美容師"
+    - "#hairsalon"
   style:
     - "#ヘアスタイル"
     - "#髪型"
     - "#イメチェン"
-    - "#ヘアアレンジ"
+    - "#大人可愛い"
+    - "#垢抜けヘア"
     - "#大人女子"
+  trend:        # 流行スタイル（定期的に見直すと効果的。bandit が勝ちタグを学習）
+    - "#韓国ヘア"
+    - "#くびれヘア"
+    - "#ウルフカット"
+    - "#顔まわりレイヤー"
+    - "#エアリーバング"
+    - "#ニュアンスパーマ"
+    - "#透明感ヘア"
   cut:
     - "#ボブ"
+    - "#切りっぱなしボブ"
     - "#ショートヘア"
-    - "#ショートボブ"
+    - "#ハンサムショート"
     - "#ミディアムヘア"
     - "#レイヤーカット"
+    - "#前髪カット"
   color:
     - "#ヘアカラー"
     - "#インナーカラー"
-    - "#ハイライトカラー"
+    - "#イヤリングカラー"
+    - "#ミルクティーベージュ"
     - "#透明感カラー"
-    - "#ブリーチカラー"
+    - "#暗髪"
+    - "#ブリーチなし"
+    - "#ハイトーンカラー"
   care:
-    - "#トリートメント"
     - "#髪質改善"
+    - "#髪質改善トリートメント"
     - "#艶髪"
     - "#ヘアケア"
     - "#縮毛矯正"
+    - "#酸性ストレート"
   area:        # 東大阪・布施エリア（angelica布施店）
     - "#布施美容室"
     - "#布施美容院"
@@ -58,10 +73,14 @@ sets:
   - id: "balanced"
     pools: ["core", "style", "color", "area"]
   - id: "cut_focus"
-    pools: ["core", "cut", "style", "area"]
+    pools: ["core", "cut", "trend", "area"]
   - id: "color_focus"
     pools: ["core", "color", "care", "area"]
   - id: "care_focus"
     pools: ["core", "care", "style", "area"]
+  - id: "korean_trend"
+    pools: ["core", "trend", "color", "area"]
+  - id: "hightone"
+    pools: ["core", "color", "trend", "area"]
   - id: "local_cta"
-    pools: ["core", "area", "cta", "style"]
+    pools: ["core", "area", "cta", "trend"]
