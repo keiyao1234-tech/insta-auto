@@ -1,3 +1,15 @@
 {
-  "posts": []
+  "posts": [
+    {
+      "asset": "assets/stories/IMG_4528.JPG",
+      "hash": "51522a6cff2bb30c17313b10785de661d7142a9518f5be24419052924a0e51c9",
+      "channel": "story",
+      "media_id": "17921809974383547",
+      "container_id": "17909753688425604",
+      "hashtag_set": null,
+      "time_bucket": "13-17",
+      "posted_at": "2026-06-25T06:54:08Z",
+      "metrics_harvested": false
+    }
+  ]
 }
