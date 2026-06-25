@@ -1,0 +1,16 @@
+# secrets — 絶対にコミットしない
+.env
+
+# python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# misc
+*.log
+.DS_Store
+
+# Git LFS は使わない（raw URL配信がポインタになり壊れるため）
+# 動画/画像は通常のgit blobとして ≤100MB で置くこと

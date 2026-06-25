@@ -1,0 +1,40 @@
+name: refresh-token
+
+# 毎週日曜 03:00 UTC に長期トークンをリフレッシュ（60日失効を回避）
+on:
+  schedule:
+    - cron: "0 3 * * 0"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+
+      # 新トークンを取得し、伏字化して GITHUB_ENV (NEW_IG_TOKEN) に渡す
+      - name: Refresh long-lived token
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: python -m src.refresh_token
+
+      # 取得した新トークンで Secret を上書き（要: fine-grained PAT, Secrets=write）
+      - name: Store refreshed token to Secret
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          if [ -z "${NEW_IG_TOKEN:-}" ]; then
+            echo "新トークンが空です"; exit 1
+          fi
+          gh secret set IG_ACCESS_TOKEN --body "$NEW_IG_TOKEN" --repo "$GITHUB_REPOSITORY"
+          echo "IG_ACCESS_TOKEN を更新しました（expires_in=${IG_TOKEN_EXPIRES_IN}s）"

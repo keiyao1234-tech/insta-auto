@@ -1,0 +1,66 @@
+# =============================================================
+# アプリ挙動の設定。投稿スケジュール自体は .github/workflows の
+# cron(UTC) で制御する。ここは「どう投稿するか」を決める。
+# =============================================================
+
+account:
+  timezone: "Asia/Tokyo"          # 時間帯バケットの判定に使用
+
+media:
+  stories_dir: "assets/stories"
+  feed_dir: "assets/feed"
+  exhaustion_behavior: "reshuffle"  # 全画像を使い切った時: stop | reshuffle
+  image_extensions: [".jpg", ".jpeg", ".png"]
+  video_extensions: [".mp4", ".mov"]
+  max_file_mb: 100                  # GitHub の1ファイル上限。超過は警告してスキップ
+
+publish:
+  api_version: "v23.0"
+  graph_base: "https://graph.instagram.com"
+  poll_interval_seconds: 5          # container status のポーリング間隔
+  poll_max_attempts: 60             # 動画処理待ち：最大 5 分
+  retry_attempts: 3
+  retry_backoff_seconds: 10
+
+story:
+  enabled: true
+  overlay_location:                 # ストーリーは場所スタンプ不可 → 画像に焼き込む（任意）
+    enabled: false
+    text: "Tokyo · YourSalon"
+    position: "bottom-right"        # bottom-right | bottom-left | top-right | top-left
+
+feed:
+  enabled: true
+  reel_share_to_feed: true          # 動画(REELS)をフィードにも表示
+  location_id: ""                   # Instagram Login では非対応の可能性あり（README参照）。空なら付与しない
+
+caption:
+  templates:                        # {hashtags} を bandit が選んだセットで置換
+    - "本日のスタイル✨\n\n{hashtags}"
+    - "なりたいが叶うサロン💇\n\n{hashtags}"
+    - "ご予約受付中📲 プロフィールのリンクから\n\n{hashtags}"
+  llm:                              # 任意。有効化すると課金の可能性 → COST_REPORT.md 参照
+    enabled: false
+    provider: "anthropic"
+    model: "claude-haiku-4-5-20251001"
+
+bandit:
+  algorithm: "epsilon_greedy"       # epsilon_greedy | thompson
+  epsilon: 0.2                      # 探索割合（20%はランダム探索を残す）
+  reward_weights:                   # harvest が Insights を合成して報酬にする際の重み
+    reach: 1.0
+    likes: 2.0
+    comments: 4.0
+    saved: 6.0
+    shares: 6.0
+  time_buckets: ["07-10", "10-13", "13-17", "17-20", "20-23"]  # JST時
+
+insights:
+  story_metrics: ["reach", "replies"]
+  feed_metrics: ["reach", "likes", "comments", "saved", "shares", "views"]
+  reel_metrics: ["reach", "likes", "comments", "saved", "shares", "views"]
+  feed_maturity_days: 3             # フィードはこの日数以内の投稿を再回収して成熟値を反映
+
+notify:
+  discord_on_success: false
+  discord_on_failure: true
