@@ -65,22 +65,29 @@ pools:
     - "#布施駅"
     - "#近鉄布施"
     - "#東大阪"
+  signature:    # 毎回必ず付ける定番・ブランドタグ（angelica布施店）
+    - "#美容室angelica"
+    - "#バイカルテ"
+    - "#TOKIOトリートメント"
+    - "#韓国ヘア"
+    - "#韓国スタイル"
   cta:
     - "#新規予約受付中"
     - "#ヘアサロン予約"
 
+# signature と area は毎回確実に入るよう先頭に固定。残りは bandit が最適化。
 sets:
   - id: "balanced"
-    pools: ["core", "style", "color", "area"]
+    pools: ["signature", "area", "core", "style", "color"]
   - id: "cut_focus"
-    pools: ["core", "cut", "trend", "area"]
+    pools: ["signature", "area", "core", "cut", "trend"]
   - id: "color_focus"
-    pools: ["core", "color", "care", "area"]
+    pools: ["signature", "area", "core", "color", "care"]
   - id: "care_focus"
-    pools: ["core", "care", "style", "area"]
+    pools: ["signature", "area", "core", "care", "style"]
   - id: "korean_trend"
-    pools: ["core", "trend", "color", "area"]
+    pools: ["signature", "area", "core", "trend", "color"]
   - id: "hightone"
-    pools: ["core", "color", "trend", "area"]
+    pools: ["signature", "area", "core", "color", "trend"]
   - id: "local_cta"
-    pools: ["core", "area", "cta", "trend"]
+    pools: ["signature", "area", "core", "cta", "trend"]
