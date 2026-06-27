@@ -55,12 +55,16 @@ class IGClient:
             if resp.ok and "error" not in body:
                 return body
 
-            msg = (body.get("error") or {}).get("message", resp.text)
+            err = body.get("error") or {}
+            msg = err.get("message", resp.text)
+            detail = (f"{resp.status_code}: {msg} "
+                      f"[code={err.get('code')} subcode={err.get('error_subcode')} "
+                      f"type={err.get('type')} fbtrace={err.get('fbtrace_id')}]")
             if resp.status_code in _RETRYABLE:
-                last_err = IGError(f"{resp.status_code}: {msg}")
+                last_err = IGError(detail)
                 time.sleep(self.backoff * attempt)
                 continue
-            raise IGError(f"{resp.status_code}: {msg}")  # 4xx等は即時失敗
+            raise IGError(detail)  # 4xx等は即時失敗
         raise IGError(f"APIリクエスト失敗 ({method} {url}): {last_err}")
 
     # ---- 公開フロー ----
