@@ -9,6 +9,11 @@
       "n": 1,
       "reward_sum": 71.0,
       "reward_sq": 5041.0
+    },
+    "color_focus|20-23": {
+      "n": 1,
+      "reward_sum": 50.0,
+      "reward_sq": 2500.0
     }
   }
 }
