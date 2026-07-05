@@ -14,6 +14,11 @@
       "n": 1,
       "reward_sum": 50.0,
       "reward_sq": 2500.0
+    },
+    "cut_focus|20-23": {
+      "n": 1,
+      "reward_sum": 0.0,
+      "reward_sq": 0.0
     }
   }
 }
