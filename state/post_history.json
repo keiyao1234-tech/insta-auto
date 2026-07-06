@@ -175,6 +175,17 @@
       "time_bucket": "20-23",
       "posted_at": "2026-07-05T15:01:12Z",
       "metrics_harvested": true
+    },
+    {
+      "asset": "assets/feed/IMG_4528.JPG",
+      "hash": "51522a6cff2bb30c17313b10785de661d7142a9518f5be24419052924a0e51c9",
+      "channel": "feed",
+      "media_id": "17896978245506872",
+      "container_id": "17911791747425604",
+      "hashtag_set": "care_focus",
+      "time_bucket": "20-23",
+      "posted_at": "2026-07-06T17:58:31Z",
+      "metrics_harvested": false
     }
   ]
 }
