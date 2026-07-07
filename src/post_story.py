@@ -12,7 +12,7 @@ def run():
         return
 
     posted = history.posted_hashes()
-    behavior = config.CONFIG["media"]["exhaustion_behavior"]
+    behavior = config.CONFIG["media"]["exhaustion_behavior"]["stories"]
     path, sha = media.pick_unposted(config.CONFIG["media"]["stories_dir"], posted, behavior)
     if not path:
         log.info("投稿可能なストーリー素材がありません（behavior=%s）", behavior)

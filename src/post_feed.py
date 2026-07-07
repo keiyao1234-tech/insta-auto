@@ -17,7 +17,7 @@ def run():
         return
 
     posted = history.posted_hashes()
-    behavior = config.CONFIG["media"]["exhaustion_behavior"]
+    behavior = config.CONFIG["media"]["exhaustion_behavior"]["feed"]
     path, sha = media.pick_unposted(config.CONFIG["media"]["feed_dir"], posted, behavior)
     if not path:
         log.info("投稿可能なフィード素材がありません（behavior=%s）", behavior)

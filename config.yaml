@@ -9,7 +9,9 @@ account:
 media:
   stories_dir: "assets/stories"
   feed_dir: "assets/feed"
-  exhaustion_behavior: "reshuffle"  # 全画像を使い切った時: stop | reshuffle
+  exhaustion_behavior:              # 全画像を使い切った時の挙動: stop | reshuffle
+    stories: "reshuffle"            # ストーリーは24hで消えるので再利用OK
+    feed: "stop"                    # フィードは重複させない（使い切ったら停止=新しい写真待ち）
   image_extensions: [".jpg", ".jpeg", ".png"]
   video_extensions: [".mp4", ".mov"]
   max_file_mb: 100                  # GitHub の1ファイル上限。超過は警告してスキップ
