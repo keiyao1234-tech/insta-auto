@@ -24,6 +24,11 @@
       "n": 1,
       "reward_sum": 55.0,
       "reward_sq": 3025.0
+    },
+    "care_focus|20-23": {
+      "n": 1,
+      "reward_sum": 56.0,
+      "reward_sq": 3136.0
     }
   }
 }
