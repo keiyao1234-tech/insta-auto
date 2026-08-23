@@ -702,7 +702,7 @@
       "hashtag_set": null,
       "time_bucket": "17-20",
       "posted_at": "2026-08-22T10:10:41Z",
-      "metrics_harvested": false
+      "metrics_harvested": true
     }
   ]
 }
