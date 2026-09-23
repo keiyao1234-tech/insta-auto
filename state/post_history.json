@@ -1044,6 +1044,17 @@
       "time_bucket": "20-23",
       "posted_at": "2026-09-22T14:13:15Z",
       "metrics_harvested": true
+    },
+    {
+      "asset": "assets/stories/IMG_1285.JPG",
+      "hash": "a5c14306b34668e78ff84fb4ebb2560606c6f89a6c973019db800b4e8fdb4b66",
+      "channel": "story",
+      "media_id": "17915887779452287",
+      "container_id": "17924311950425604",
+      "hashtag_set": null,
+      "time_bucket": "20-23",
+      "posted_at": "2026-09-23T14:29:10Z",
+      "metrics_harvested": false
     }
   ]
 }
