@@ -1285,7 +1285,7 @@
       "hashtag_set": null,
       "time_bucket": "20-23",
       "posted_at": "2026-10-15T14:29:47Z",
-      "metrics_harvested": false
+      "metrics_harvested": true
     }
   ]
 }
