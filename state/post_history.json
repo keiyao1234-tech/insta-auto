@@ -1549,7 +1549,7 @@
       "hashtag_set": null,
       "time_bucket": "20-23",
       "posted_at": "2026-11-10T17:20:37Z",
-      "metrics_harvested": false
+      "metrics_harvested": true
     }
   ]
 }
